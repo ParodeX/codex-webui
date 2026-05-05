@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Codex Console</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Projekte und Chats">
+        <header class="brand">
+          <div class="mark" aria-hidden="true">C</div>
+          <div>
+            <strong>Codex Console</strong>
+            <span>Workspace UI</span>
+          </div>
+        </header>
+
+        <section class="panel">
+          <div class="panel-title">
+            <span>Projekte</span>
+            <button id="newProjectBtn" class="icon-btn" title="Projekt anlegen" aria-label="Projekt anlegen">+</button>
+          </div>
+          <div id="projectList" class="list"></div>
+        </section>
+
+        <section class="panel chats-panel">
+          <div class="panel-title">
+            <span>Chats</span>
+            <button id="newChatBtn" class="icon-btn" title="Chat anlegen" aria-label="Chat anlegen">+</button>
+          </div>
+          <div id="chatList" class="list"></div>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <nav class="topbar" aria-label="Aktueller Kontext">
+          <div>
+            <p class="eyebrow">Aktives Projekt</p>
+            <h1 id="projectTitle">-</h1>
+          </div>
+          <div class="top-actions">
+            <button id="clearBtn" class="tool-btn">Leeren</button>
+            <button id="exportBtn" class="tool-btn primary">Export</button>
+          </div>
+        </nav>
+
+        <section class="content-grid">
+          <section class="terminal" aria-label="Chat Terminal">
+            <div class="terminal-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+              <strong id="chatTitle">codex-session</strong>
+            </div>
+            <div id="messages" class="messages" aria-live="polite"></div>
+            <form id="commandForm" class="command-line">
+              <label for="commandInput">codex&gt;</label>
+              <input id="commandInput" name="command" autocomplete="off" placeholder="Schreibe eine Aufgabe oder tippe /help">
+              <button type="submit">Senden</button>
+            </form>
+          </section>
+
+          <aside class="inspector" aria-label="Projekt Details">
+            <section class="status-card">
+              <p class="eyebrow">Status</p>
+              <div class="status-row">
+                <span>Workspace</span>
+                <strong id="workspacePath">-</strong>
+              </div>
+              <div class="status-row">
+                <span>Modus</span>
+                <strong>Web UI</strong>
+              </div>
+              <div class="status-row">
+                <span>Nachrichten</span>
+                <strong id="messageCount">0</strong>
+              </div>
+            </section>
+
+            <section class="status-card">
+              <p class="eyebrow">Schnellbefehle</p>
+              <div class="quick-actions">
+                <button data-command="Zeige mir die Projektstruktur.">Struktur</button>
+                <button data-command="Starte eine neue Aufgabe in diesem Projekt.">Aufgabe</button>
+                <button data-command="Fasse den aktuellen Chat zusammen.">Zusammenfassung</button>
+                <button data-command="/help">Hilfe</button>
+              </div>
+            </section>
+
+            <section class="status-card">
+              <p class="eyebrow">Notizen</p>
+              <textarea id="notes" placeholder="Projektbezogene Notizen"></textarea>
+            </section>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="exportDialog">
+      <form method="dialog">
+        <h2>Chat Export</h2>
+        <textarea id="exportText" readonly></textarea>
+        <menu>
+          <button>Schliessen</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
